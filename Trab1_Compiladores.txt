@@ -1,5 +1,5 @@
 program exemplo1
-	var 
+	var
 		n, s, i: integer;
 	procedure soma;
 		var q: integer;
@@ -14,7 +14,7 @@ begin
 	read(n);
 	s:=0; i:=0;
 	while i<=n do
-	begin	
+	begin
 		soma;
 		write (s);
 		i:=i+1;

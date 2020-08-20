@@ -2,47 +2,39 @@
 #include <conio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "testeBiblio.h"
 
 void proximo(FILE *arquivo)
 {
-	int lines=1;
-	int tamanhoLexema=0;
-	char lexema[100];
+	int lines=1,i;
+	int tamanhoLexema=1;
+	char lexema[100]="";
 	
-			
+	inicia();
+	
 	while(feof(arquivo)==false)
 	{
 		char proximo = fgetc(arquivo);		
-		
+		lexema[0]=' ';
 		if(proximo =='\n')
 		{
-			int i;
-			printf("linha :: %d\t",lines);	
-			for(i=0;i<tamanhoLexema;i++)
-			{
-				printf("%c",lexema[i]);
-			}
-						
-			printf("\n");			
-			for(i=0;i<tamanhoLexema;i++)
-			{
-				lexema[i]=NULL;
-			}		
-			tamanhoLexema=0;		
+			lexema[tamanhoLexema]=' ';
+			scanner(lexema,lines);
+			scannerVar(lexema,lines);
+			memset(lexema,'\0',100);
+			
+			lexema[0]=' ';				
+			tamanhoLexema=1;		
 			lines++;				
 		}
-				
-		else
-		{	
-			if(proximo=='\t');			
-			else
-			{
-				lexema[tamanhoLexema]=proximo;			
-				tamanhoLexema++;
-			}									
+								
+		if((proximo>31)&&(proximo<127))
+		{
+			lexema[tamanhoLexema]=proximo;			
+			tamanhoLexema++;
 		}									
-	}	
-	free(lexema);	
+	}
+	mostrar();
 }
 
 void codigo()
